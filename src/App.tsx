@@ -1,11 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-
-// Image URLs from generated assets
-const heroImg = 'https://image.qwenlm.ai/generated-images/8a2ac7bb-80da-4288-ae8d-42257d1b00ef/_result.png';
-const brainImg = 'https://image.qwenlm.ai/generated-images/9b3da661-0726-4d5d-b6a4-480feab43078/_result.png';
-const travelImg = 'https://image.qwenlm.ai/generated-images/ef2f0ab2-eb5c-4bf8-8a80-424a69fcbd04/_result.png';
-const dataImg = 'https://image.qwenlm.ai/generated-images/ae97b057-6419-49bf-be09-d7414a34fee4/_result.png';
-const interfaceImg = 'https://image.qwenlm.ai/generated-images/782c41dc-65eb-4724-9e56-b3b7a0627e3e/_result.png';
+import { StatCard, DecisionNode, AICard, CollabStep, ResultItem } from './components';
+import { IMAGES, AI_CAPABILITIES, COLLAB_STEPS } from './constants';
 
 function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -79,7 +74,7 @@ function App() {
       <section id="scene-0" className="scene vignette">
         <div 
           className="scene-bg ken-burns"
-          style={{ backgroundImage: `url(${heroImg})` }}
+          style={{ backgroundImage: `url(${IMAGES.hero})` }}
         />
         <div className="scene-overlay" />
         
@@ -136,7 +131,7 @@ function App() {
       <section id="scene-1" className="scene vignette">
         <div 
           className="scene-bg ken-burns"
-          style={{ backgroundImage: `url(${brainImg})` }}
+          style={{ backgroundImage: `url(${IMAGES.brain})` }}
         />
         <div className="scene-overlay" />
         
@@ -203,7 +198,7 @@ function App() {
       <section id="scene-2" className="scene vignette">
         <div 
           className="scene-bg ken-burns"
-          style={{ backgroundImage: `url(${dataImg})` }}
+          style={{ backgroundImage: `url(${IMAGES.data})` }}
         />
         <div className="scene-overlay" />
         
@@ -224,48 +219,16 @@ function App() {
 
           {/* AI Processing Grid */}
           <div className="grid md:grid-cols-3 gap-6">
-            <AICard 
-              icon="🧠"
-              title="Neural Processing"
-              description="Deep learning models analyze patterns from billions of travel decisions"
-              metric="10M+ data points/sec"
-              delay={0}
-            />
-            <AICard 
-              icon="🌍"
-              title="Global Intelligence"
-              description="Real-time access to weather, pricing, availability across 195 countries"
-              metric="195 countries"
-              delay={200}
-            />
-            <AICard 
-              icon="⚡"
-              title="Instant Optimization"
-              description="Multi-variable optimization finds the perfect balance of cost, time & experience"
-              metric="< 2 seconds"
-              delay={400}
-            />
-            <AICard 
-              icon="🎯"
-              title="Personalization Engine"
-              description="Learns your preferences from past behavior, social signals & stated desires"
-              metric="98.7% accuracy"
-              delay={600}
-            />
-            <AICard 
-              icon="🔮"
-              title="Predictive Analytics"
-              description="Forecasts price changes, crowd levels, and experience quality before you book"
-              metric="14-day forecast"
-              delay={800}
-            />
-            <AICard 
-              icon="🛡️"
-              title="Risk Mitigation"
-              description="Continuous monitoring of safety data, travel advisories & insurance optimization"
-              metric="24/7 monitoring"
-              delay={1000}
-            />
+            {AI_CAPABILITIES.map((capability, index) => (
+              <AICard
+                key={capability.title}
+                icon={capability.icon}
+                title={capability.title}
+                description={capability.description}
+                metric={capability.metric}
+                delay={index * 200}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -274,7 +237,7 @@ function App() {
       <section id="scene-3" className="scene vignette">
         <div 
           className="scene-bg ken-burns"
-          style={{ backgroundImage: `url(${interfaceImg})` }}
+          style={{ backgroundImage: `url(${IMAGES.interface})` }}
         />
         <div className="scene-overlay" />
         
@@ -295,38 +258,17 @@ function App() {
             <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/50 via-cyan-500/50 to-amber-500/50 hidden md:block" />
             
             <div className="space-y-16">
-              <CollabStep
-                side="left"
-                human="I want a beach vacation"
-                humanDetail="Warm water, good food, not too crowded"
-                ai="Analyzing 2,847 destinations matching your criteria..."
-                aiResult="Bali, Maldives, Seychelles — ranked by your preference score"
-                step={1}
-              />
-              <CollabStep
-                side="right"
-                human="Show me options under $3,000"
-                humanDetail="Including flights, hotel, and activities"
-                ai="Found 23 packages within budget. Optimizing for best value..."
-                aiResult="Top pick: Bali 7-night package — $2,847 all-inclusive"
-                step={2}
-              />
-              <CollabStep
-                side="left"
-                human="What about the weather in March?"
-                humanDetail="I want sunny days for photography"
-                ai="Weather prediction: 92% sunny days. UV index optimal for outdoor shoots."
-                aiResult="Recommendation confirmed — March 15-22 has ideal conditions"
-                step={3}
-              />
-              <CollabStep
-                side="right"
-                human="Book it! But add a cooking class"
-                humanDetail="I love learning local cuisine"
-                ai="Added top-rated Balinese cooking experience. Total: $2,923."
-                aiResult="✓ Booking confirmed. Itinerary sent to your device."
-                step={4}
-              />
+              {COLLAB_STEPS.map((step, index) => (
+                <CollabStep
+                  key={index}
+                  side={step.side}
+                  human={step.human}
+                  humanDetail={step.humanDetail}
+                  ai={step.ai}
+                  aiResult={step.aiResult}
+                  step={index + 1}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -336,7 +278,7 @@ function App() {
       <section id="scene-4" className="scene vignette">
         <div 
           className="scene-bg ken-burns"
-          style={{ backgroundImage: `url(${travelImg})` }}
+          style={{ backgroundImage: `url(${IMAGES.travel})` }}
         />
         <div className="scene-overlay opacity-60" />
         
@@ -400,158 +342,6 @@ function App() {
           </p>
         </div>
       </footer>
-    </div>
-  );
-}
-
-// Sub-components
-
-function StatCard({ number, label, color }: { number: string; label: string; color: string }) {
-  const colorMap: Record<string, string> = {
-    amber: 'text-amber-400 border-amber-500/30',
-    orange: 'text-orange-400 border-orange-500/30',
-    red: 'text-red-400 border-red-500/30',
-  };
-  
-  return (
-    <div className={`text-center p-4 rounded-xl border ${colorMap[color]} bg-white/5`}>
-      <p className={`text-2xl font-bold ${colorMap[color].split(' ')[0]}`}>{number}</p>
-      <p className="text-xs text-white/50 mt-1">{label}</p>
-    </div>
-  );
-}
-
-function DecisionNode({ label, progress, color, delay }: { label: string; progress: number; color: string; delay: string }) {
-  const colorMap: Record<string, string> = {
-    indigo: 'bg-indigo-500',
-    cyan: 'bg-cyan-500',
-    amber: 'bg-amber-500',
-    green: 'bg-green-500',
-    red: 'bg-red-500',
-  };
-  
-  return (
-    <div className="space-y-1" style={{ animationDelay: delay }}>
-      <div className="flex justify-between text-sm">
-        <span className="text-white/70">{label}</span>
-        <span className="text-white/40">{progress}%</span>
-      </div>
-      <div className="h-2 rounded-full bg-white/10 overflow-hidden">
-        <div 
-          className={`h-full rounded-full ${colorMap[color]} transition-all duration-1000`}
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-    </div>
-  );
-}
-
-function AICard({ icon, title, description, metric, delay }: { icon: string; title: string; description: string; metric: string; delay: number }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay);
-        }
-      },
-      { threshold: 0.2 }
-    );
-    
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [delay]);
-
-  return (
-    <div 
-      ref={ref}
-      className={`p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-cyan-500/30 transition-all duration-700 hover:bg-white/10 group ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
-    >
-      <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{icon}</div>
-      <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
-      <p className="text-sm text-white/50 mb-4">{description}</p>
-      <div className="pt-3 border-t border-white/10">
-        <span className="text-cyan-400 text-sm font-mono">{metric}</span>
-      </div>
-    </div>
-  );
-}
-
-function CollabStep({ side, human, humanDetail, ai, aiResult, step }: { 
-  side: string; human: string; humanDetail: string; ai: string; aiResult: string; step: number 
-}) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.3 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div 
-      ref={ref}
-      className={`grid md:grid-cols-2 gap-8 items-center transition-all duration-700 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-      }`}
-    >
-      {/* Step indicator */}
-      <div className={`hidden md:flex absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-indigo-500/20 border border-indigo-500/50 items-center justify-center text-indigo-400 font-bold text-sm z-10`}>
-        {step}
-      </div>
-
-      {/* Human side */}
-      <div className={`p-6 rounded-2xl bg-amber-500/5 border border-amber-500/20 backdrop-blur-xl ${side === 'right' ? 'md:order-2' : ''}`}>
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-lg">
-            👤
-          </div>
-          <div>
-            <p className="text-amber-400 font-semibold text-sm">Human</p>
-            <p className="text-white/80 font-medium">{human}</p>
-          </div>
-        </div>
-        <p className="text-sm text-white/40 ml-[3.25rem]">{humanDetail}</p>
-      </div>
-
-      {/* AI side */}
-      <div className={`p-6 rounded-2xl bg-cyan-500/5 border border-cyan-500/20 backdrop-blur-xl ${side === 'right' ? 'md:order-1' : ''}`}>
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-lg">
-            🤖
-          </div>
-          <div>
-            <p className="text-cyan-400 font-semibold text-sm">AI Processing</p>
-            <p className="text-white/80 text-sm">{ai}</p>
-          </div>
-        </div>
-        <div className="ml-[3.25rem] p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-          <p className="text-cyan-300 text-sm font-medium">→ {aiResult}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ResultItem({ label, value, color }: { label: string; value: string; color: string }) {
-  const colorMap: Record<string, string> = {
-    red: 'text-red-400',
-    amber: 'text-amber-400',
-    green: 'text-green-400',
-  };
-  
-  return (
-    <div className="flex justify-between items-center">
-      <span className="text-white/50 text-sm">{label}</span>
-      <span className={`font-semibold ${colorMap[color]}`}>{value}</span>
     </div>
   );
 }
