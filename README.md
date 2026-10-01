@@ -17,6 +17,77 @@ This project is an immersive, scroll-driven visual narrative that tells the stor
 
 Built with cinematic effects, AI-generated imagery, and smooth animations, it presents a compelling case for the future of collaborative intelligence.
 
+## 🎯 Key Features
+
+- 🎬 **Cinematic Visual Experience** — Film grain, letterbox bars, and Ken Burns effects
+- 🖼️ **AI-Generated Imagery** — 5 unique cinematic backgrounds created with AI
+- 📜 **Scroll-Driven Storytelling** — 5 immersive scenes that unfold as you scroll
+- ✨ **Smooth Animations** — Scroll-triggered reveals, floating particles, and glowing effects
+- 📊 **Data Visualization** — Animated progress bars and comparison charts
+- 💬 **Interactive Flow** — Human-AI conversation timeline
+- 📱 **Fully Responsive** — Works beautifully on mobile, tablet, and desktop
+- ⚡ **Lightning Fast** — Built with Vite for optimal performance
+- 🎨 **Modern Tech Stack** — React 18, TypeScript, Tailwind CSS 4
+
+## 🎬 Visual Preview
+
+### Scene 1: Opening Hero
+![Scene 1 - Hero](https://image.qwenlm.ai/generated-images/0edbf0b9-1fae-40c2-a970-770b11f8f0c1/_result.png)
+
+### Scene 2: The Decision Paradox
+![Scene 2 - Challenge](https://image.qwenlm.ai/generated-images/5fa9a5c8-4768-40f5-b00d-c1e5ed6234f6/_result.png)
+
+### Scene 3: AI Decision Matrix
+![Scene 3 - AI Capabilities](https://image.qwenlm.ai/generated-images/4282bb2c-108f-4f55-b8fc-b1a2240fa9b3/_result.png)
+
+### Scene 4: Human-AI Collaboration
+![Scene 4 - Collaboration](https://image.qwenlm.ai/generated-images/2c0b74ad-dd44-4fcf-ba59-0f4d9e3babef/_result.png)
+
+### Scene 5: The Perfect Journey
+![Scene 5 - Results](https://image.qwenlm.ai/generated-images/90415a26-8718-4ec4-9a58-e9ffa9488660/_result.png)
+
+---
+
+## 🚀 Live Demo
+
+Want to see it in action? Deploy it to GitHub Pages:
+
+```bash
+# Install dependencies
+npm install
+
+# Build the project
+npm run build
+
+# Deploy to GitHub Pages (requires gh-pages package)
+npm install -D gh-pages
+npx gh-pages -d dist
+```
+
+Then visit: `https://your-username.github.io/human_aitravel/`
+
+### Alternative: View Locally
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/human_aitravel.git
+cd human_aitravel
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Open your browser and visit **http://localhost:3000** to see the full experience!
+
+### One-Click Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/human_aitravel)
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/your-username/human_aitravel)
+
 ## 🎬 Experience Scenes
 
 | Scene | Title | Description |
